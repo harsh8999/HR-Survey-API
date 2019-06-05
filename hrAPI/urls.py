@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from HrSurvey.views import QuestionList, OptionList, RecentList
+from HrSurvey.views import QuestionList, OptionList, RecentList, SurveyList, SpecificQuestionList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('questions/',QuestionList.as_view()),
     path('options/',OptionList.as_view()),
     path('recent/',RecentList.as_view()),
+    path('survey/',SurveyList.as_view()),
+    path('survey/<int:pk>/',SurveyList.as_view()),
+    path('question/<int:pk>/',SpecificQuestionList.as_view()),
+    
+    
 ]
