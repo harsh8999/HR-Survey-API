@@ -15,7 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from HrSurvey.views import QuestionList, OptionList, RecentList, SurveyList, SpecificQuestionList
+from HrSurvey.views import (QuestionList, 
+                            OptionList, 
+                            RecentList, 
+                            SurveyList, 
+                            SpecificSurveyList,
+                            SpecificQuestionList, 
+                            ResponsesList,
+                            dataForGraph,
+                            SpecificResponseQuestionList,
+                            SpecificSurveyResponseList,
+							SpecificSurveyResponseOptionList,
+                            Login,
+                            ActiveSurveyList,
+                            SurveyQuestionList)
+                            # SpecificEmployeeResponseList)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,7 +39,14 @@ urlpatterns = [
     path('recent/',RecentList.as_view()),
     path('survey/',SurveyList.as_view()),
     path('survey/<int:pk>/',SurveyList.as_view()),
+    path('specific-survey/<int:pk>/',SpecificSurveyList.as_view()),
     path('question/<int:pk>/',SpecificQuestionList.as_view()),
-    
-    
+    path('question-response/<int:pk>/',SpecificResponseQuestionList.as_view()),
+    path('response/', ResponsesList.as_view()),
+    path('textarea-answers/<int:pk>/<int:q_id>/',SpecificSurveyResponseOptionList.as_view()),
+    path('survey-response/<int:pk>/',SpecificSurveyResponseList.as_view()),
+    path('graph/<int:pk>/<int:question_id>/',dataForGraph.as_view()),
+    path('login/',Login.as_view()),
+    path('activeSurvey/',ActiveSurveyList.as_view()),
+    path('surveyQuestion/<int:pk>/',SurveyQuestionList.as_view())
 ]
